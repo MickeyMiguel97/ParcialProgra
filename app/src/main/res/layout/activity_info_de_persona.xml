@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".info_de_persona">
+
+    <ImageView
+        android:id="@+id/img_contacto_id"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:padding="8dp"
+        android:src="@drawable/profile"/>
+    <TextView
+        android:id="@+id/nombre_id"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Nombre"
+        android:gravity="left"
+        android:padding="16dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_below="@id/img_contacto_id"/>
+    <LinearLayout
+        android:id="@+id/Linear_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/nombre_id">
+        <TextView
+            android:id="@+id/telefono_id"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="Telefono"
+            android:padding="16dp"
+            android:textSize="20dp"
+            android:layout_below="@id/nombre_id"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/call"
+            android:background="@android:color/transparent"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/telefono2_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        android:padding="16dp"
+        android:textSize="20dp"
+        android:layout_below="@id/Linear_id"/>
+
+</RelativeLayout>

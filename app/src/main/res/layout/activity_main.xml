@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:paddingBottom="8dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <Button
+            android:id="@+id/btn_contactos"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="40dp"
+            android:text="CONTACTOS      "
+            android:layout_gravity="end"
+            android:textAlignment="viewEnd"
+            android:textSize="15dp"
+            android:onClick="homebtn"
+            android:background="@drawable/b_contactos"/>
+        <Button
+            android:id="@+id/btn_favoritos"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="40dp"
+            android:text="FAVORITOS      "
+            android:layout_gravity="end"
+            android:textAlignment="viewEnd"
+            android:textSize="15dp"
+            android:onClick="favbtn"
+            android:background="@drawable/b_fav"/>
+        <Button
+            android:id="@+id/btn_agregar"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1.5"
+            android:background="@drawable/b_add"/>
+        <Button
+            android:id="@+id/btn_buscar"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1.5"
+            android:background="@drawable/b_search"/>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:scrollbars="vertical"
+        android:padding="8dp"
+        android:id="@+id/Recyclerview_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
