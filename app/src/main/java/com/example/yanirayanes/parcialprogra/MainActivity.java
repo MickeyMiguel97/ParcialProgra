@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     RecyclerView myrv;
     RecyclerViewAdapter myAdapter;
-    List<Persona> listContact, favos;
+    List<Persona> listContact, favos, buscar;
     Cursor c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +25,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listContact = new ArrayList<>();
         favos = new ArrayList<>();
+        buscar = new ArrayList<>();
 
-        listContact.add(new Persona("Mami","7854-8475",R.drawable.profile));
-        listContact.add(new Persona("Papi","7792-7529",R.drawable.profile));
+        listContact.add(new Persona("Tia Marce","7043-9792",R.drawable.profile));
+        listContact.add(new Persona("Mami","7854-87792-752475",R.drawable.profile));
+        listContact.add(new Persona("Papi","9",R.drawable.profile));
         listContact.add(new Persona("Casa","2284-9566",R.drawable.profile));
         listContact.add(new Persona("Yo Movistar","6420-9082", R.drawable.profile));
         listContact.add(new Persona("Yo Claro","7209-2609", R.drawable.profile));
@@ -37,6 +42,23 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new RecyclerViewAdapter(this,listContact);
         myrv.setLayoutManager(new GridLayoutManager(this,3));
         myrv.setAdapter(myAdapter);
+        EditText filter = (EditText) findViewById(R.id.filter);
+        filter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
     }
 
     public void addFavs(Persona favo){
@@ -60,6 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    private void filter(String text){
+        ArrayList<Persona> filteredList = new ArrayList<>();
+        for(Persona item : listContact){
+            if(item.getNombre().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        myAdapter.filterList(filteredList);
+    }
+
     public void homebtn(View v){
 
         myAdapter = new RecyclerViewAdapter(v.getContext(), listContact);
@@ -71,7 +104,17 @@ public class MainActivity extends AppCompatActivity {
         myrv.setAdapter(myAdapter);
     }
 
+    public void addbtn(View v){
+        myAdapter = new RecyclerViewAdapter(v.getContext(), favos);
+        myrv.setAdapter(myAdapter);
+        //Intent intent = new Intent(v.getContext(), agregar_contacto.class);
+        //this.startActivity(intent);
+    }
 
+    public void buscarbtn(View v){
+        EditText barra = (EditText) findViewById(R.id.filter);
+        barra.setEnabled(true);
+    }
 
 
 }

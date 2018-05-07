@@ -1,5 +1,6 @@
 package com.example.yanirayanes.parcialprogra;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -19,6 +20,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context MyContext;
     private List<Persona> MyData;
     private boolean favorito;
+    private Activity activity;
 
     public RecyclerViewAdapter(Context MyContext, List<Persona> MyData){
         this.MyContext = MyContext;
@@ -79,7 +81,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageButton imgbtn_fav;
         TextView nombre_persona;
         ImageView img_persona;
-        CardView cardView;
+        CardView cardView, cardViewAdd;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -92,6 +94,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             img_persona = (ImageView) itemView.findViewById(R.id.img_persona);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
             imgbtn_fav = (ImageButton) itemView.findViewById(R.id.imgbtn_fav);
+            cardViewAdd = (CardView) itemView.findViewById(R.id.cardview_add_id);
         }
     }
 
@@ -102,5 +105,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public boolean VerificarFav(){
         return favorito;
+    }
+
+    public void filterList(List<Persona> filteredList) {
+        MyData = filteredList;
+        notifyDataSetChanged();
+
     }
 }

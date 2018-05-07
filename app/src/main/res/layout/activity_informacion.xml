@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".informacion_persona">
+    tools:context=".informacion_persona"
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:id="@+id/img_contacto_id"
@@ -21,6 +22,14 @@
         android:padding="16dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:layout_below="@id/img_contacto_id"/>
+    <TextView
+        android:id="@+id/telefon_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        android:padding="16dp"
+        android:textSize="20dp"
+        android:layout_below="@id/Linear_id"/>
     <LinearLayout
         android:id="@+id/Linear_id"
         android:layout_width="wrap_content"
@@ -46,12 +55,5 @@
             android:src="@drawable/call"
             android:background="@android:color/transparent"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/telefono2_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telefono"
-        android:padding="16dp"
-        android:textSize="20dp"
-        android:layout_below="@id/Linear_id"/>
+
 </RelativeLayout>
