@@ -1,10 +1,14 @@
 package com.example.yanirayanes.parcialprogra;
 
-public class Persona {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Persona implements Parcelable{
     private String nombre;
     private String telefono;
     private int thumbnail;
     private boolean fav;
+    public static String KEY_CONTACT = "KEY_CONTACT";
 
     public Persona() {
     }
@@ -15,6 +19,25 @@ public class Persona {
         this.thumbnail = thumbnail;
         fav = false;
     }
+
+    protected Persona(Parcel in) {
+        nombre = in.readString();
+        telefono = in.readString();
+        thumbnail = in.readInt();
+        fav = in.readByte() != 0;
+    }
+
+    public static final Creator<Persona> CREATOR = new Creator<Persona>() {
+        @Override
+        public Persona createFromParcel(Parcel in) {
+            return new Persona(in);
+        }
+
+        @Override
+        public Persona[] newArray(int size) {
+            return new Persona[size];
+        }
+    };
 
     public String getNombre() {
         return nombre;
@@ -54,5 +77,18 @@ public class Persona {
 
     public boolean yesorno(){
         return fav;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(nombre);
+        parcel.writeString(telefono);
+        parcel.writeInt(thumbnail);
+        parcel.writeByte((byte) (fav?1:0));
     }
 }
