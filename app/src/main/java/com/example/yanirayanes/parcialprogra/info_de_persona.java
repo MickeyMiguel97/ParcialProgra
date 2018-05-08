@@ -9,13 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class info_de_persona extends AppCompatActivity {
 
-    TextView nombre_persona, telefono_persona;
-    ImageButton btncall;
+    private TextView nombre_persona, telefono_persona;
+    private ImageView img;
+    private ImageButton btncall;
     String num;
+    private static final int PERMISSIONS_REQUEST_CALL = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

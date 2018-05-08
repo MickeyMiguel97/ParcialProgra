@@ -1,7 +1,9 @@
 package com.example.yanirayanes.parcialprogra;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,8 +19,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     RecyclerView myrv;
     RecyclerViewAdapter myAdapter;
-    List<Persona> listContact, favos, buscar;
+    List<Persona> listContact, favos, buscar, list;
     Cursor c;
+    Persona agregarpipol;
+    public static final int ADD_CONTACT = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         buscar = new ArrayList<>();
 
         listContact.add(new Persona("Tia Marce","7043-9792",R.drawable.profile));
-        listContact.add(new Persona("Mami","7854-87792-752475",R.drawable.profile));
-        listContact.add(new Persona("Papi","9",R.drawable.profile));
+        listContact.add(new Persona("Mami","7854-8475",R.drawable.profile));
+        listContact.add(new Persona("Papi","7792-7529",R.drawable.profile));
         listContact.add(new Persona("Casa","2284-9566",R.drawable.profile));
         listContact.add(new Persona("Yo Movistar","6420-9082", R.drawable.profile));
         listContact.add(new Persona("Yo Claro","7209-2609", R.drawable.profile));
@@ -105,15 +110,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addbtn(View v){
-        myAdapter = new RecyclerViewAdapter(v.getContext(), favos);
-        myrv.setAdapter(myAdapter);
-        //Intent intent = new Intent(v.getContext(), agregar_contacto.class);
-        //this.startActivity(intent);
+        Intent addIntent = new Intent(this, agregar_persona.class);
+        agregarpipol = new Persona();
+        startActivityForResult(addIntent, ADD_CONTACT);
     }
 
     public void buscarbtn(View v){
         EditText barra = (EditText) findViewById(R.id.filter);
         barra.setEnabled(true);
+    }
+
+    public void addContacts() {
+        try {
+            String var="";
+            Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
+            while (phones.moveToNext()) {
+                String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                if(!(var.equals(name))){
+                    list.add(new Persona(name, phoneNumber,R.drawable.profile));
+                }
+                var=name;
+
+            }
+            phones.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 

@@ -94,7 +94,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             img_persona = (ImageView) itemView.findViewById(R.id.img_persona);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
             imgbtn_fav = (ImageButton) itemView.findViewById(R.id.imgbtn_fav);
-            cardViewAdd = (CardView) itemView.findViewById(R.id.cardview_add_id);
+
         }
     }
 
